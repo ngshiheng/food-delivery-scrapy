@@ -4,15 +4,12 @@ import scrapy
 
 class FoodPandaSpider(scrapy.Spider):
     name = "foodpanda"
-    start_urls = []
 
     # Foodpanda API
     base_url = f"https://discovery.deliveryhero.io/pandora/api/v5/vendors?cuisine=&food_characteristic=&budgets=&has_free_delivery=1&search_term=&latitude=5.3441567&longitude=100.311548&include=characteristics%2Cmetadata%2Cdiscounts&new_sorting=true&language_id=1&vertical=restaurants&configuration=Variant1&country=my&customer_id=2324140&customer_hash=9df193e2adcbc4d350a1fb3bcdd151b2"
     response = requests.get(base_url)
     restaurant_urls = response.json()['data']['items']
-
-    for url in restaurant_urls:
-        start_urls.append(url['redirection_url'])
+    start_urls = [url['redirection_url'] for url in restaurant_urls]
 
     def parse(self, response):
         dish_info = {}
