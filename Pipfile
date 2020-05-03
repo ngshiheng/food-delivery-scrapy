@@ -9,9 +9,6 @@ verify_ssl = true
 scrapy = "*"
 requests = "*"
 autopep8 = "*"
-beautifulsoup4 = "*"
-pyqt5 = "*"
-pyqtwebengine = "*"
 scrapy-splash = "*"
 
 [requires]

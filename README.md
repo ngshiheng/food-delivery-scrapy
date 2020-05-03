@@ -1,12 +1,26 @@
 # Food Delivery Scrapy
 
+- Scrape the restaurant name, url & prices of each of the item on the menu listed on Foodpanda & DeliverEat
+- Please read this [article](https://benbernardblog.com/web-scraping-and-crawling-are-perfectly-legal-right/) before using this
+
+## Setup
+
+Install the dependencies using `pipenv`
+
 ## Usage
 
-1. Enter address
-2. Scrape n number of restaurants
-3. Save money
+### Foodpanda
 
-## Improvements
+```sh
+scrapy crawl foodpanda -o food_delivery_scrapy/output/foodpanda.json
+```
 
-1. How to scrape faster? Multi-threading?
-2. How to prevent/respect rate limiting?
+### DeliverEat
+
+```sh
+# Get the URLs of all the available restaurants
+scrapy crawl delivereat_restaurants
+
+# Get the final data
+scrapy crawl delivereat -o food_delivery_scrapy/output/delivereat.json
+```
