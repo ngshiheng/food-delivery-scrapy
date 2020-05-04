@@ -1,5 +1,7 @@
 import requests
 import scrapy
+from scrapy.loader import ItemLoader
+from food_delivery_scrapy.items import FoodDeliveryScrapyItem
 
 
 class FoodPandaSpider(scrapy.Spider):
@@ -16,17 +18,12 @@ class FoodPandaSpider(scrapy.Spider):
     start_urls = [url['redirection_url'] for url in restaurant_urls]
 
     def parse(self, response):
-        dish_info = {}
-        RESTAURANT_INFO_SELECTOR = '.vendor-info-main-headline.item h1.fn::text'
-        DISH_SELECTOR = '.item-react-root'
-        dishes = response.css(DISH_SELECTOR)
+        restaurant_name = response.css('.vendor-info-main-headline.item h1.fn::text').get()
+        dishes = response.css('.item-react-root')
         for dish in dishes:
-            dish_name = dish.css('span::text').get().strip().replace('  ', '')
-            dish_price = dish.css('.price.p-price::text').get().strip().replace('  ', '').replace('MYR', '').replace('from', '')
-            dish_info[dish_name] = float(dish_price)
-
-        yield {
-            'restaurant_name': response.css(RESTAURANT_INFO_SELECTOR).get().strip(),
-            'url': response.request.url,
-            'menu': dish_info
-        }
+            loader = ItemLoader(item=FoodDeliveryScrapyItem(), selector=dish)
+            loader.add_value('restaurant_name', restaurant_name)
+            loader.add_css('dish_name', 'span::text')
+            loader.add_css('dish_price', '.price.p-price::text')
+            loader.add_value('url', response.request.url)
+            yield loader.load_item()

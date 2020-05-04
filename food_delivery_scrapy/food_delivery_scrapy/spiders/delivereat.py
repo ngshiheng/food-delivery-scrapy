@@ -1,5 +1,7 @@
 import scrapy
 from scrapy_splash import SplashRequest
+from scrapy.loader import ItemLoader
+from food_delivery_scrapy.items import FoodDeliveryScrapyItem
 
 
 class DeliverEatSpider(scrapy.Spider):
@@ -17,18 +19,12 @@ class DeliverEatSpider(scrapy.Spider):
             yield SplashRequest(url=url, callback=self.parse, endpoint='render.html')
 
     def parse(self, response):
-        dish_info = {}
-        RESTAURANT_INFO_SELECTOR = 'p.fs-m.my-0::text'
-        DISH_SELECTOR = 'div.card-stacked'
-        dishes = response.css(DISH_SELECTOR)
-
+        restaurant_name = response.css("p.fs-m.my-0::text").get()
+        dishes = response.css('div.card-stacked')
         for dish in dishes:
-            dish_name = dish.css('h1::text').get().strip().replace('  ', '')
-            dish_price = dish.css('b::text').get().strip().replace('RM', '')
-            dish_info[dish_name] = float(dish_price)
-
-        yield {
-            'restaurant_name': response.css(RESTAURANT_INFO_SELECTOR).get().strip(),
-            'url': response.request._original_url,
-            'menu': dish_info
-        }
+            loader = ItemLoader(item=FoodDeliveryScrapyItem(), selector=dish)
+            loader.add_value('restaurant_name', restaurant_name)
+            loader.add_css('dish_name', 'h1::text')
+            loader.add_css('dish_price', 'b::text')
+            loader.add_value('url', response.request._original_url)
+            yield loader.load_item()
