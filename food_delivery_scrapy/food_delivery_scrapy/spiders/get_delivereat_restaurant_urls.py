@@ -28,8 +28,3 @@ class DeliverEatSpider(scrapy.Spider):
                 url = f"https://jom.delivereat.my{restaurant.css('a::attr(href)').get()}"
                 f.write(url)
                 f.write("\n")
-
-                yield {
-                    'restaurant_name': restaurant.css('.res-name::text').get(),
-                    'url': url,
-                }

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from food_delivery_scrapy.config import PGUSER, PGPASSWORD, DB_NAME
 
 # Scrapy settings for food_delivery_scrapy project
 #
@@ -13,6 +14,15 @@ BOT_NAME = 'food_delivery_scrapy'
 
 SPIDER_MODULES = ['food_delivery_scrapy.spiders']
 NEWSPIDER_MODULE = 'food_delivery_scrapy.spiders'
+
+CONNECTION_STRING = "{drivername}://{user}:{passwd}@{host}:{port}/{db_name}?client_encoding=utf8".format(
+    drivername="postgresql",
+    user=PGUSER,
+    passwd=PGPASSWORD,
+    host="localhost",
+    port="5432",
+    db_name=DB_NAME,
+)
 
 
 # Crawl responsibly by identifying yourself (and your website) on the user-agent
@@ -74,9 +84,9 @@ HTTPCACHE_STORAGE = 'scrapy_splash.SplashAwareFSCacheStorage'
 
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
-# ITEM_PIPELINES = {
-#    'food_delivery_scrapy.pipelines.FoodDeliveryScrapyPipeline': 300,
-# }
+ITEM_PIPELINES = {
+    'food_delivery_scrapy.pipelines.FoodDeliveryScrapyPipeline': 300,
+}
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://docs.scrapy.org/en/latest/topics/autothrottle.html

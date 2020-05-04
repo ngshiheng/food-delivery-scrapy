@@ -1,7 +1,8 @@
-import requests
-import scrapy
-from scrapy.loader import ItemLoader
 from food_delivery_scrapy.items import FoodDeliveryScrapyItem
+from scrapy.loader import ItemLoader
+import scrapy
+import requests
+from food_delivery_scrapy.config import FOODPANDA_API_ENDPOINT
 
 
 class FoodPandaSpider(scrapy.Spider):
@@ -12,7 +13,7 @@ class FoodPandaSpider(scrapy.Spider):
     name = "foodpanda"
 
     # Foodpanda API
-    BASE_URL = f"https://discovery.deliveryhero.io/pandora/api/v5/vendors?cuisine=&food_characteristic=&budgets=&has_free_delivery=1&search_term=&latitude=5.3441567&longitude=100.311548&include=characteristics%2Cmetadata%2Cdiscounts&new_sorting=true&language_id=1&vertical=restaurants&configuration=Variant1&country=my&customer_id=2324140&customer_hash=9df193e2adcbc4d350a1fb3bcdd151b2"
+    BASE_URL = FOODPANDA_API_ENDPOINT
     response = requests.get(BASE_URL)
     restaurant_urls = response.json()['data']['items']
     start_urls = [url['redirection_url'] for url in restaurant_urls]

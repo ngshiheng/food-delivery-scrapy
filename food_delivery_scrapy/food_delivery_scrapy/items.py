@@ -1,15 +1,9 @@
 # -*- coding: utf-8 -*-
 
-# Define here the models for your scraped items
-#
-# See documentation in:
-# https://docs.scrapy.org/en/latest/topics/items.html
 
 import scrapy
-from scrapy.item import Item, Field
+from scrapy.item import Field
 from scrapy.loader.processors import MapCompose, TakeFirst
-from datetime import datetime
-
 
 
 def remove_currency_symbol(text):
