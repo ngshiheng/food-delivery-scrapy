@@ -22,7 +22,7 @@ scrapy crawl foodpanda -o food_delivery_scrapy/output/foodpanda.json
 
 ```sh
 # Get the URLs of all the available restaurants
-scrapy crawl delivereat_restaurants
+scrapy crawl get_delivereat_restaurants
 
 # Get the final data
 scrapy crawl delivereat -o food_delivery_scrapy/output/delivereat.json
