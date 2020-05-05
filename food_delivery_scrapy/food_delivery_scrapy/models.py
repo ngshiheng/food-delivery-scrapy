@@ -26,6 +26,8 @@ class Restaurant(Base):
 
     id = Column(Integer, primary_key=True)
     restaurant_name = Column('restaurant_name', String(255))
+    restaurant_address = Column('restaurant_address', String(255))
+    cuisine_type = Column('cuisine_type', String(255))
     url = Column('url', String)
     dishes = relationship('Dish', backref='restaurant')
     created_date = Column(DateTime, default=datetime.datetime.utcnow)

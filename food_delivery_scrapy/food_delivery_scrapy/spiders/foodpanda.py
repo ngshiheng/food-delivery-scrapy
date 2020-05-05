@@ -21,10 +21,19 @@ class FoodPandaSpider(scrapy.Spider):
 
     def parse(self, response):
         restaurant_name = response.css('.vendor-info-main-headline.item h1.fn::text').get()
+        restaurant_address = response.css('.vendor-location::text').get()
+        cuisine_types = response.css('.vendor-info-main-details-cuisines li::text').getall()
+
+        # Filter out cuisine type with length more than 10 & remove duplicates from the list
+        cuisine_types = list(dict.fromkeys(filter(lambda cuisine: len(cuisine) <= 10, cuisine_types)))
+        cuisine_type = ','.join(cuisine_types)
+
         dishes = response.css('.item-react-root')
         for dish in dishes:
             loader = ItemLoader(item=FoodDeliveryScrapyItem(), selector=dish)
             loader.add_value('restaurant_name', restaurant_name)
+            loader.add_value('restaurant_address', restaurant_address)
+            loader.add_value('cuisine_type', cuisine_type)
             loader.add_css('dish_name', 'span::text')
             loader.add_css('dish_price', '.price.p-price::text')
             loader.add_value('url', response.request.url)

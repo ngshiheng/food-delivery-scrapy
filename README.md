@@ -28,6 +28,8 @@ DEBUG=True scrapy crawl foodpanda -o food_delivery_scrapy/output/foodpanda.json
 DEBUG=True scrapy crawl foodpanda
 ```
 
+Set `PROXY_POOL_ENABLED = True` at `settings.py` to use proxy pool
+
 ### JSON output
 
 #### Foodpanda

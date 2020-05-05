@@ -24,10 +24,15 @@ class DeliverEatSpider(scrapy.Spider):
 
     def parse(self, response):
         restaurant_name = response.css("p.fs-m.my-0::text").get()
+        restaurant_address = response.css("p.fs-xs.mt-0::text").get()
+        cuisine_type = response.xpath("/html/body/app-root/app-restaurant/section/div/div[4]/app-restaurant-info/div/div[2]/div[1]/div/div/p[2]/text()").get()
+
         dishes = response.css('div.card-stacked')
         for dish in dishes:
             loader = ItemLoader(item=FoodDeliveryScrapyItem(), selector=dish)
             loader.add_value('restaurant_name', restaurant_name)
+            loader.add_value('restaurant_address', restaurant_address)
+            loader.add_value('cuisine_type', cuisine_type)
             loader.add_css('dish_name', 'h1::text')
             loader.add_css('dish_price', 'b::text')
             loader.add_value('url', response.request._original_url)

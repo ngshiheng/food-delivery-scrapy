@@ -15,6 +15,10 @@ class FoodDeliveryScrapyItem(scrapy.Item):
         input_processor=MapCompose(str.strip),
         output_processor=TakeFirst()
     )
+    restaurant_address = Field(
+        input_processor=MapCompose(str.strip),
+        output_processor=TakeFirst()
+    )
     url = Field(
         input_processor=MapCompose(str.strip),
         output_processor=TakeFirst()
@@ -25,5 +29,9 @@ class FoodDeliveryScrapyItem(scrapy.Item):
     )
     dish_price = Field(
         input_processor=MapCompose(remove_currency_symbol),
+        output_processor=TakeFirst()
+    )
+    cuisine_type = Field(
+        input_processor=MapCompose(str.strip),
         output_processor=TakeFirst()
     )

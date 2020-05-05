@@ -7,8 +7,8 @@ PGPASSWORD = os.getenv("PGPASSWORD")
 FOODPANDA_API_ENDPOINT = os.getenv("FOODPANDA_API_ENDPOINT")
 
 FOODPANDA_EXAMPLE_URLS = ['https://www.foodpanda.my/restaurant/r0ff/starbucks-borders-queensbay-mall-2',
-                          'https://www.foodpanda.my/restaurant/m5gg/mcdonald-s-desa-university-93',
-                          'https://www.foodpanda.my/restaurant/n8jp/kfc-queensbay-mall']
+                          'https://www.foodpanda.my/restaurant/n8jp/kfc-queensbay-mall',
+                          'https://www.foodpanda.my/restaurant/o1as/cube-coffee-one-precinct']
 
 
 DELIVEREAT_EXAMPLE_URLS = [

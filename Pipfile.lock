@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "8c7546cb945e45f9f930a297b34c66800de9b050fa210fa874df544307258ce0"
+            "sha256": "ceef4a4d355d9de2e16729a5db72e03a9f5b66f0a17f500d318aa4dbf890260e"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -29,6 +29,14 @@
                 "sha256:b6feb6455337df834f6c9962d6ccf771515b7d939bca142b29c20c2376bc6111"
             ],
             "version": "==20.2.0"
+        },
+        "beautifulsoup4": {
+            "hashes": [
+                "sha256:594ca51a10d2b3443cbac41214e12dbb2a1cd57e1a7344659849e2e20ba6a8d8",
+                "sha256:a4bbe77fd30670455c5296242967a123ec28c37e9702a8a81bd2f20a4baf0368",
+                "sha256:d4e96ac9b0c3a6d3f0caae2e4124e6055c5dcafde8e2f831ff194c104f0775a0"
+            ],
+            "version": "==4.9.0"
         },
         "certifi": {
             "hashes": [
@@ -182,6 +190,13 @@
             ],
             "version": "==0.1.16"
         },
+        "proxyscrape": {
+            "hashes": [
+                "sha256:9291bb8ce48dc0adf0dea41d5c205f7703f9cb3b443ce79e85fc4af0bbe2207d",
+                "sha256:ab73e76d43693dba79ed8fa5bfda4977aca7e12856e57cb8588be9e7bc1fcbcf"
+            ],
+            "version": "==0.3.0"
+        },
         "psycopg2-binary": {
             "hashes": [
                 "sha256:008da3ab51adc70a5f1cfbbe5db3a22607ab030eb44bcecf517ad11a0c2b3cac",
@@ -283,6 +298,13 @@
             "index": "pypi",
             "version": "==2.1.0"
         },
+        "scrapy-proxy-pool": {
+            "hashes": [
+                "sha256:2d460fbeb51a287a350ff22ab6667af2f08b496d6f027551eadba2a7751cfe69"
+            ],
+            "index": "pypi",
+            "version": "==0.1.9"
+        },
         "scrapy-splash": {
             "hashes": [
                 "sha256:089188b11202813b14b88d3be008641a2b3d36e82fadd4a6c61f0af59b66e7b5",
@@ -311,6 +333,13 @@
                 "sha256:8f3cd2e254d8f793e7f3d6d9df77b92252b52637291d0f0da013c76ea2724b6c"
             ],
             "version": "==1.14.0"
+        },
+        "soupsieve": {
+            "hashes": [
+                "sha256:e914534802d7ffd233242b785229d5ba0766a7f487385e3f714446a07bf540ae",
+                "sha256:fcd71e08c0aee99aca1b73f45478549ee7e7fc006d51b37bec9e9def7dc22b69"
+            ],
+            "version": "==2.0"
         },
         "sqlalchemy": {
             "hashes": [
