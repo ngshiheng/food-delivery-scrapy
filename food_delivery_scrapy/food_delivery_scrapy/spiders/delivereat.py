@@ -2,6 +2,7 @@ import scrapy
 from scrapy_splash import SplashRequest
 from scrapy.loader import ItemLoader
 from food_delivery_scrapy.items import FoodDeliveryScrapyItem
+from food_delivery_scrapy.config import DEBUG, DELIVEREAT_EXAMPLE_URLS
 
 
 class DeliverEatSpider(scrapy.Spider):
@@ -10,9 +11,12 @@ class DeliverEatSpider(scrapy.Spider):
     - Get data from all restaurants
     """
     name = "delivereat"
-    with open('food_delivery_scrapy/output/restaurant_list.txt', 'r') as f:
-        restaurant_urls = f.readlines()
-    start_urls = [url.strip() for url in restaurant_urls]
+    if DEBUG:
+        start_urls = DELIVEREAT_EXAMPLE_URLS
+    else:
+        with open('food_delivery_scrapy/output/restaurant_list.txt', 'r') as f:
+            restaurant_urls = f.readlines()
+        start_urls = [url.strip() for url in restaurant_urls]
 
     def start_requests(self):
         for url in self.start_urls:

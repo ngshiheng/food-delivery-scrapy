@@ -4,15 +4,16 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+autopep8 = "*"
+flake8 = "*"
 
 [packages]
 scrapy = "*"
 requests = "*"
-autopep8 = "*"
 scrapy-splash = "*"
 sqlalchemy = "*"
 psycopg2-binary = "*"
-flake8 = "*"
+scrapy-user-agents = "*"
 
 [requires]
 python_version = "3.6"

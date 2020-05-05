@@ -2,7 +2,7 @@ from food_delivery_scrapy.items import FoodDeliveryScrapyItem
 from scrapy.loader import ItemLoader
 import scrapy
 import requests
-from food_delivery_scrapy.config import FOODPANDA_API_ENDPOINT
+from food_delivery_scrapy.config import FOODPANDA_API_ENDPOINT, DEBUG, FOODPANDA_EXAMPLE_URLS
 
 
 class FoodPandaSpider(scrapy.Spider):
@@ -11,12 +11,13 @@ class FoodPandaSpider(scrapy.Spider):
     - Get data from all restaurants
     """
     name = "foodpanda"
-
-    # Foodpanda API
-    BASE_URL = FOODPANDA_API_ENDPOINT
-    response = requests.get(BASE_URL)
-    restaurant_urls = response.json()['data']['items']
-    start_urls = [url['redirection_url'] for url in restaurant_urls]
+    if DEBUG:
+        start_urls = FOODPANDA_EXAMPLE_URLS
+    else:
+        BASE_URL = FOODPANDA_API_ENDPOINT
+        response = requests.get(BASE_URL)
+        restaurant_urls = response.json()['data']['items']
+        start_urls = [url['redirection_url'] for url in restaurant_urls]
 
     def parse(self, response):
         restaurant_name = response.css('.vendor-info-main-headline.item h1.fn::text').get()
