@@ -2,6 +2,7 @@ import logging
 from sqlalchemy.orm import sessionmaker
 from scrapy.exceptions import DropItem
 from food_delivery_scrapy.models import Restaurant, Dish, db_connect, create_table
+from food_delivery_scrapy.config import DEBUG
 
 
 class FoodDeliveryScrapyPipeline(object):

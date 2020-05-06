@@ -4,10 +4,12 @@
 import scrapy
 from scrapy.item import Field
 from scrapy.loader.processors import MapCompose, TakeFirst
+from re import sub
+from decimal import Decimal
 
 
-def remove_currency_symbol(text):
-    return float(text.strip().replace(' ', '').replace('MYR', '').replace('RM', '').replace('from', ''))
+def convert_money(money):
+    return Decimal(sub('[^0-9.]', '', money))
 
 
 class FoodDeliveryScrapyItem(scrapy.Item):
@@ -28,7 +30,7 @@ class FoodDeliveryScrapyItem(scrapy.Item):
         output_processor=TakeFirst()
     )
     dish_price = Field(
-        input_processor=MapCompose(remove_currency_symbol),
+        input_processor=MapCompose(convert_money),
         output_processor=TakeFirst()
     )
     cuisine_type = Field(

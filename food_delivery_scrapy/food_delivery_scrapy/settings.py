@@ -72,10 +72,15 @@ DOWNLOADER_MIDDLEWARES = {
     'scrapy_proxy_pool.middlewares.BanDetectionMiddleware': 620,
 }
 
+# scrapy_splash
 SPLASH_URL = 'http://localhost:8050'
 DUPEFILTER_CLASS = 'scrapy_splash.SplashAwareDupeFilter'
 HTTPCACHE_STORAGE = 'scrapy_splash.SplashAwareFSCacheStorage'
+
+# scrapy-proxy-pool
 PROXY_POOL_ENABLED = False
+PROXY_POOL_REFRESH_INTERVAL = 1
+PROXY_POOL_FORCE_REFRESH = True
 
 
 # Enable or disable extensions
